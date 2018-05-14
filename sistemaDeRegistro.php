@@ -30,14 +30,3 @@
 		</form>						
 	</body>
 </html>
-
-<?php
-	if(isset ($_POST[])) {
-		$name = $_POST
-		$email = $_POST
-		$senha = $_POST
-		$csenha = $_POST
-	}
-
-
-?>
