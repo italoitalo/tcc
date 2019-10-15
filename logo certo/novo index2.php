@@ -26,12 +26,12 @@
 <?php
 session_start();
 if(isset($_SESSION['user_id']) and $_SESSION['user_id'] == 2){
-  header("refresh:0;index do admiro corno.php");
-
+  header("refresh:3;index do admiro corno.php");
+  echo "Bem vindo adm";
 }
 if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
-  header("refresh:0;funcionario.php");
-
+  header("refresh:3;funcionario.php");
+  echo "bem vindo funcionario";
 }
 ?>
 <!DOCTYPE html>
@@ -97,60 +97,58 @@ if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
 		$registros["id"];
 		$id_produto=$registros["id"];
 		$nome=$registros['nome'];	
-    $imagem = $registros['foto'];
-    $quantidade= $registros['quantidade'];
 	if ($cont_linha==1)
 	{
 	?>
 		<ol>
 			<li>
-  		  <tr>
-  	     	<td>
-  		      <table>
-  	         	<tr>
-  	         	 <th>
-                <img width='120' height='50' src="php/uploads/<?php echo $imagem; ?>">
-  		        </th>
-  		      </tr>
-  		  </tr>
-  		<tr >
-  		<th><h1><?php echo $registros["nome"]; ?></h1></th>
-  		</tr>
-  		<tr>
-  		<th><h2>R$ <?php echo $registros["preco"]; ?></h2></th>
-  		</tr>
-  		<tr>
-  		<th><?php echo'<a href="produto.php?foto='.$registros['foto'].'&preco='.$registros['preco'].'&cor='.$registros['cor'].'&quantidade='.$quantidade.'&fabricante='.$registros['fabricante'].'&descricao='.$registros['mensagem'].'&id='.$registros['id'].'&nome='.$registros['nome'].'" class="botao">Comprar</a>';?></th>
-  		</tr>
-  		</table>
-  		</td>
-  	</li>
-  	<?php 
-  	$cont_linha++;
-  	}
-  	elseif (($cont_linha==2) or ($cont_linha==3))
-  	{
-  	?>
-  	<li>
-  		<td>
-  		<table>
-  		<tr>
-  		<th>
-<img width='120' height='50' src="php/uploads/<?php echo $imagem; ?>">
-  		</th>
-  		</tr>
-  		</tr>
-  		<tr>
-  		<th><h1><?php echo $registros["nome"]; ?></h1></th>
-  		</tr>
-  		<tr>
-  		<th><h2>R$ <?php echo $registros["preco"]; ?></h2></th>
-  		</tr>
-  		<tr>
-  		<th><?php echo'<a href="produto.php?foto='.$registros['foto'].'&preco='.$registros['preco'].'&cor='.$registros['cor'].'&quantidade='.$quantidade.'&fabricante='.$registros['fabricante'].'&descricao='.$registros['mensagem'].'&id='.$registros['id'].'&nome='.$registros['nome'].'" class="botao">Comprar</a>';?></th>
-  		</tr>
-  		</table>
-  		</td>
+		<tr>
+		<td>
+		<table>
+		<tr>
+		<th>
+		<img src="img/Mini Cozinheira Pimenta Sexy.jpg">
+		</th>
+		</tr>
+		</tr>
+		<tr >
+		<th><h1><?php echo $registros["nome"]; ?></h1></th>
+		</tr>
+		<tr>
+		<th><h2>R$ <?php echo $registros["preco"]; ?></h2></th>
+		</tr>
+		<tr>
+		<th><?php echo'<a href="carrinho.php?acao=add&id='.$registros['id'].'">Adicionar ao Carrinho +</a>';?></th>
+		</tr>
+		</table>
+		</td>
+	</li>
+	<?php 
+	$cont_linha++;
+	}
+	elseif (($cont_linha==2) or ($cont_linha==3))
+	{
+	?>
+	<li>
+		<td>
+		<table>
+		<tr>
+		<th>
+		<img src="img/Mini Cozinheira Pimenta Sexy.jpg">
+		</th>
+		</tr>
+		</tr>
+		<tr>
+		<th><h1><?php echo $registros["nome"]; ?></h1></th>
+		</tr>
+		<tr>
+		<th><h2>R$ <?php echo $registros["preco"]; ?></h2></th>
+		</tr>
+		<tr>
+		<th><?php echo'<a href="carrinho.php?acao=add&id='.$registros['id'].'">Adicionar ao Carrinho +</a>';?></th>
+		</tr>
+		</table>
+		</td>
 	</li>
 		
 	<?php
@@ -164,18 +162,18 @@ if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
 		<table>
 		<tr>
 		<th>
-<img width='120' src="php/uploads/<?php echo $imagem; ?>">
+		<img src="img/Mini Cozinheira Pimenta Sexy.jpg">
 		</th>
 		</tr>
 		</tr>
 		<tr>
-		<th><h2><?php echo $registros["nome"]; ?></h2></th>
+		<th><h1><?php echo $registros["nome"]; ?></h1></th>
 		</tr>
 		<tr>
 		<th><h2>R$ <?php echo $registros["preco"]; ?></h2></th>
 		</tr>
 		<tr>
-		<th><?php echo'<a href="produto.php?foto='.$registros['foto'].'&preco='.$registros['preco'].'&cor='.$registros['cor'].'&quantidade='.$quantidade.'&fabricante='.$registros['fabricante'].'&descricao='.$registros['mensagem'].'&id='.$registros['id'].'&nome='.$registros['nome'].'" class="botao">Comprar</a>';?></th>
+		<th><?php echo'<a href="carrinho.php?acao=add&id='.$registros['id'].'">Adicionar ao Carrinho +</a>';?></th>
 		</tr>
 		</table>
 		</td>
@@ -235,7 +233,7 @@ if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
       <div class="linha">
         <footer>
           <div class="colunha col12">
-            <span>&copy; 2018 - Ladies web</span>
+            <span>&copy; 2018 - Pura sedução web</span>
           </div>
         </footer>
         

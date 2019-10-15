@@ -1,38 +1,13 @@
- <?php /*
-	include('php/conexion.php');
- 
-	$res = "SELECT * FROM produtos";
- 
- 
-?>
-<h1>List of companies ..</h1>
-<?php
-		$query = $con->query($res);
-		while ($row=$query->fetch_array()) {
-	  echo "$row[id] $row[nome] <br />";
-	  echo " <a href='produto.html'>
-              <figure>
-                <img src='img/Mini Mulher Aranha Pimenta Sexy.jpg'>
-                <figcaption>$row[id] $row[nome]</figcaption>
-              </figure>
-            </a>
-          </li>
-          <li>";
-	}*/
-?>
-
-
-
 <?php
 session_start();
-if(isset($_SESSION['user_id']) and $_SESSION['user_id'] == 2){
-  header("refresh:0;index do admiro corno.php");
-
-}
-if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
-  header("refresh:0;funcionario.php");
-
-}
+$id=$_GET['id'];
+$foto=$_GET['foto'];
+$nome=$_GET['nome'];
+$preco=$_GET['preco'];
+$descricao=$_GET['descricao'];
+$fabricante=$_GET['fabricante'];
+$cor=$_GET['cor'];
+$quantidade=$_GET['quantidade']; 
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -59,13 +34,13 @@ if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
   							<li><a href="clientes.php">clientes</a></li>
   							<li><a href="servicos.php">serviços</a></li>
   							<li><a href="sobre.php">sobre</a></li>
-                <li><a href="contato.php">contato</a></li>
+  							<li><a href="contato.php">contato</a></li>
                 <br></br>
                 <li><a href="login.php">login</a></li>
                 <?php if( isset($_SESSION['user_id'])){ ?>
                 <li><a href="deslogar.php">deslogar</a></li>
                 <?php } ?>
-  							<li><a href="cadastro.php">cadastro</a></li>
+                <li><a href="cadastro.php">cadastro</a></li>                   
   						</ul>
   					</nav>
   				</div>
@@ -75,7 +50,7 @@ if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
   	<div class="linha">
   		<section>
   			<div class="coluna col3 sidebar">
-  				<h3>sites parceiros</h3>
+  				<h3>sites parceiros </h3>
   				<ul class="sem-marcador sem-padding">
   					<li><a href="https://www.google.com.br/">google</a></li>
   					<li><a href="https://www.youtube.com/watch?v=zYrJZGBlDQ8&t=39s">Click bait</a></li>
@@ -85,110 +60,35 @@ if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
   				</ul>
   				<a href="clientes.php" class="botao"> ver todos &raquo;</a>
   			</div>
-  			<div class="container paineis">
-<section class="painel novidades">
-  <h2>PRODUTOS</h2>
- <?php
- 	include('php/conexion.php');
- 	$res = "SELECT * FROM produtos";	
-	$query = $con->query($res);
-	$cont_linha=1;
-	while ($registros=$query->fetch_array()) {
-		$registros["id"];
-		$id_produto=$registros["id"];
-		$nome=$registros['nome'];	
-    $imagem = $registros['foto'];
-    $quantidade= $registros['quantidade'];
-	if ($cont_linha==1)
-	{
-	?>
-		<ol>
-			<li>
-  		  <tr>
-  	     	<td>
-  		      <table>
-  	         	<tr>
-  	         	 <th>
-                <img width='120' height='50' src="php/uploads/<?php echo $imagem; ?>">
-  		        </th>
-  		      </tr>
-  		  </tr>
-  		<tr >
-  		<th><h1><?php echo $registros["nome"]; ?></h1></th>
-  		</tr>
-  		<tr>
-  		<th><h2>R$ <?php echo $registros["preco"]; ?></h2></th>
-  		</tr>
-  		<tr>
-  		<th><?php echo'<a href="produto.php?foto='.$registros['foto'].'&preco='.$registros['preco'].'&cor='.$registros['cor'].'&quantidade='.$quantidade.'&fabricante='.$registros['fabricante'].'&descricao='.$registros['mensagem'].'&id='.$registros['id'].'&nome='.$registros['nome'].'" class="botao">Comprar</a>';?></th>
-  		</tr>
-  		</table>
-  		</td>
-  	</li>
-  	<?php 
-  	$cont_linha++;
-  	}
-  	elseif (($cont_linha==2) or ($cont_linha==3))
-  	{
-  	?>
-  	<li>
-  		<td>
-  		<table>
-  		<tr>
-  		<th>
-<img width='120' height='50' src="php/uploads/<?php echo $imagem; ?>">
-  		</th>
-  		</tr>
-  		</tr>
-  		<tr>
-  		<th><h1><?php echo $registros["nome"]; ?></h1></th>
-  		</tr>
-  		<tr>
-  		<th><h2>R$ <?php echo $registros["preco"]; ?></h2></th>
-  		</tr>
-  		<tr>
-  		<th><?php echo'<a href="produto.php?foto='.$registros['foto'].'&preco='.$registros['preco'].'&cor='.$registros['cor'].'&quantidade='.$quantidade.'&fabricante='.$registros['fabricante'].'&descricao='.$registros['mensagem'].'&id='.$registros['id'].'&nome='.$registros['nome'].'" class="botao">Comprar</a>';?></th>
-  		</tr>
-  		</table>
-  		</td>
-	</li>
-		
-	<?php
-	$cont_linha++;
-	}
-	else
-	{
-	?>
-	<li>
-		<td>
-		<table>
-		<tr>
-		<th>
-<img width='120' src="php/uploads/<?php echo $imagem; ?>">
-		</th>
-		</tr>
-		</tr>
-		<tr>
-		<th><h2><?php echo $registros["nome"]; ?></h2></th>
-		</tr>
-		<tr>
-		<th><h2>R$ <?php echo $registros["preco"]; ?></h2></th>
-		</tr>
-		<tr>
-		<th><?php echo'<a href="produto.php?foto='.$registros['foto'].'&preco='.$registros['preco'].'&cor='.$registros['cor'].'&quantidade='.$quantidade.'&fabricante='.$registros['fabricante'].'&descricao='.$registros['mensagem'].'&id='.$registros['id'].'&nome='.$registros['nome'].'" class="botao">Comprar</a>';?></th>
-		</tr>
-		</table>
-		</td>
-		</tr>
-	</li>
-	</ol>
-	<?php
-	$cont_linha=1;
-	}
-	}	
-	
-	?>
-
+  			
+<section class="imagemProduto">
+	<div class="coluna col3">
+  <br/>
+     <img src="php/uploads/<?php echo $foto; ?>">
+  	</div>
+  	<div class="coluna col6">
+  		<h1> <?php echo $nome; ?> </h1>
+  		<h2>R$ <?php echo $preco;?> </h2>
+      <h4> Descrição: <?php echo $descricao;echo"<br/>"; echo "Modelo: $cor "?><br/> Fabricante: <?php echo $fabricante ?></h4>
+      <table>
+     <!--- <form action=""> -->
+        <?php
+        if($quantidade <= 0){
+        echo "</form> <input type='submit' value='esgotado' class='botao'> <br/></input>";
+      }
+      if(empty($_SESSION['user_id']) == true)
+{
+  echo "<a href='login.php' class='botao'>Faça login &raquo;</a>";
+}
+else{
+      if($quantidade >= 1){
+        echo "<a href=boleto_bradesco.php?nome=$nome> <input type='submit' value='comprar' class='botao'> </a></input>";
+      }
+      }
+      ?>
+      </table>
+     <!---</form>-->
+  	</div>
 
 
 </section>
@@ -235,7 +135,7 @@ if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
       <div class="linha">
         <footer>
           <div class="colunha col12">
-            <span>&copy; 2018 - Ladies web</span>
+            <span>&copy; 2018 - Pura sedução web</span>
           </div>
         </footer>
         

@@ -1,38 +1,5 @@
- <?php /*
-	include('php/conexion.php');
- 
-	$res = "SELECT * FROM produtos";
- 
- 
-?>
-<h1>List of companies ..</h1>
-<?php
-		$query = $con->query($res);
-		while ($row=$query->fetch_array()) {
-	  echo "$row[id] $row[nome] <br />";
-	  echo " <a href='produto.html'>
-              <figure>
-                <img src='img/Mini Mulher Aranha Pimenta Sexy.jpg'>
-                <figcaption>$row[id] $row[nome]</figcaption>
-              </figure>
-            </a>
-          </li>
-          <li>";
-	}*/
-?>
-
-
-
 <?php
 session_start();
-if(isset($_SESSION['user_id']) and $_SESSION['user_id'] == 2){
-  header("refresh:0;index do admiro corno.php");
-
-}
-if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
-  header("refresh:0;funcionario.php");
-
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -83,114 +50,58 @@ if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
   					<li><a href="">ítalo's</a></li>
   					<li><a href="https://www.youtube.com/channel/UC4ITvC3VRojCY7zHs6iu1qQ">Ramon Kawai</a></li>
   				</ul>
-  				<a href="clientes.php" class="botao"> ver todos &raquo;</a>
+  				<a href="clientes.html" class="botao"> ver todos &raquo;</a>
   			</div>
   			<div class="container paineis">
 <section class="painel novidades">
-  <h2>PRODUTOS</h2>
- <?php
- 	include('php/conexion.php');
- 	$res = "SELECT * FROM produtos";	
-	$query = $con->query($res);
-	$cont_linha=1;
-	while ($registros=$query->fetch_array()) {
-		$registros["id"];
-		$id_produto=$registros["id"];
-		$nome=$registros['nome'];	
-    $imagem = $registros['foto'];
-    $quantidade= $registros['quantidade'];
-	if ($cont_linha==1)
-	{
-	?>
-		<ol>
-			<li>
-  		  <tr>
-  	     	<td>
-  		      <table>
-  	         	<tr>
-  	         	 <th>
-                <img width='120' height='50' src="php/uploads/<?php echo $imagem; ?>">
-  		        </th>
-  		      </tr>
-  		  </tr>
-  		<tr >
-  		<th><h1><?php echo $registros["nome"]; ?></h1></th>
-  		</tr>
-  		<tr>
-  		<th><h2>R$ <?php echo $registros["preco"]; ?></h2></th>
-  		</tr>
-  		<tr>
-  		<th><?php echo'<a href="produto.php?foto='.$registros['foto'].'&preco='.$registros['preco'].'&cor='.$registros['cor'].'&quantidade='.$quantidade.'&fabricante='.$registros['fabricante'].'&descricao='.$registros['mensagem'].'&id='.$registros['id'].'&nome='.$registros['nome'].'" class="botao">Comprar</a>';?></th>
-  		</tr>
-  		</table>
-  		</td>
-  	</li>
-  	<?php 
-  	$cont_linha++;
-  	}
-  	elseif (($cont_linha==2) or ($cont_linha==3))
-  	{
-  	?>
-  	<li>
-  		<td>
-  		<table>
-  		<tr>
-  		<th>
-<img width='120' height='50' src="php/uploads/<?php echo $imagem; ?>">
-  		</th>
-  		</tr>
-  		</tr>
-  		<tr>
-  		<th><h1><?php echo $registros["nome"]; ?></h1></th>
-  		</tr>
-  		<tr>
-  		<th><h2>R$ <?php echo $registros["preco"]; ?></h2></th>
-  		</tr>
-  		<tr>
-  		<th><?php echo'<a href="produto.php?foto='.$registros['foto'].'&preco='.$registros['preco'].'&cor='.$registros['cor'].'&quantidade='.$quantidade.'&fabricante='.$registros['fabricante'].'&descricao='.$registros['mensagem'].'&id='.$registros['id'].'&nome='.$registros['nome'].'" class="botao">Comprar</a>';?></th>
-  		</tr>
-  		</table>
-  		</td>
-	</li>
-		
-	<?php
-	$cont_linha++;
-	}
-	else
-	{
-	?>
-	<li>
-		<td>
-		<table>
-		<tr>
-		<th>
-<img width='120' src="php/uploads/<?php echo $imagem; ?>">
-		</th>
-		</tr>
-		</tr>
-		<tr>
-		<th><h2><?php echo $registros["nome"]; ?></h2></th>
-		</tr>
-		<tr>
-		<th><h2>R$ <?php echo $registros["preco"]; ?></h2></th>
-		</tr>
-		<tr>
-		<th><?php echo'<a href="produto.php?foto='.$registros['foto'].'&preco='.$registros['preco'].'&cor='.$registros['cor'].'&quantidade='.$quantidade.'&fabricante='.$registros['fabricante'].'&descricao='.$registros['mensagem'].'&id='.$registros['id'].'&nome='.$registros['nome'].'" class="botao">Comprar</a>';?></th>
-		</tr>
-		</table>
-		</td>
-		</tr>
-	</li>
-	</ol>
-	<?php
-	$cont_linha=1;
-	}
-	}	
-	
-	?>
+<h1>Cadastro de produto</h1>
+    <hr>
+      <form method="post" action="php/registro de produto.php">
+        <table>
+          <tr>
+            <td>Nome do produto:</td>
+            <td><input type="text" name="nome"></td>
+          </tr>          
+          <tr>
+            <td>Fabricante do produto:</td>
+            <td><input type="text" name="fabricante"></td>
+          </tr>
+          <tr>
+            <td>Cor do produto:</td>
+            <td><input type="text" name="cor"></td>
+          </tr>                      
+          <tr>
+            <td>Preço (separe os centavos com ponto):</td>
+            <td><input type="number" name="preco" min="1""></td>
+          </tr> 
+            <tr>   
+            <td>Dimensão (largura, em centimetros):</td>
+            <td>    <input type="number" id="largura" name="largura"  min="1"  /></td>
+          </tr>
+          <tr>
+            <td>Dimensão (altura, em centimetros):</td>
+            <td>    <input type="number" id="altura" name="altura"  min="1" /></td>
+          </tr>          
 
-
-
+          <tr>
+            <td>Peso (em gramas):</td>
+            <td>    <input type="number" id="peso" name="peso"  min="1"  /></td>
+          </tr>
+          <tr>
+            <td>Quantidade no estoque:</td>
+            <td>    <input type="number" id="quantidade" name="quantidade"  min="0"  /></td>
+          </tr>
+          <tr>
+            <td>Pequena descrição do produto:</td>
+            <td> <textarea name="mensagem" id="mensagem" maxlength="300"></textarea></td>
+          </tr>                                        
+            <td>Foto:</td>
+            <td><input type="file" name="arquivo" multiple></td>
+          </tr>         
+          <tr>
+        </table>
+        <input type="submit" value="Registrar &raquo" class="botao">
+      </form>
 </section>
 </div>
   		</section>
@@ -235,7 +146,7 @@ if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
       <div class="linha">
         <footer>
           <div class="colunha col12">
-            <span>&copy; 2018 - Ladies web</span>
+            <span>&copy; 2018 - Pura sedução web</span>
           </div>
         </footer>
         

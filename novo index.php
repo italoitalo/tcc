@@ -26,12 +26,12 @@
 <?php
 session_start();
 if(isset($_SESSION['user_id']) and $_SESSION['user_id'] == 2){
-  header("refresh:0;index do admiro corno.php");
-
+  header("refresh:3;index do admiro corno.php");
+  echo "Bem vindo adm";
 }
 if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
-  header("refresh:0;funcionario.php");
-
+  header("refresh:3;funcionario.php");
+  echo "bem vindo funcionario";
 }
 ?>
 <!DOCTYPE html>
@@ -89,106 +89,23 @@ if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
 <section class="painel novidades">
   <h2>PRODUTOS</h2>
  <?php
- 	include('php/conexion.php');
- 	$res = "SELECT * FROM produtos";	
-	$query = $con->query($res);
-	$cont_linha=1;
-	while ($registros=$query->fetch_array()) {
-		$registros["id"];
-		$id_produto=$registros["id"];
-		$nome=$registros['nome'];	
-    $imagem = $registros['foto'];
-    $quantidade= $registros['quantidade'];
-	if ($cont_linha==1)
-	{
-	?>
-		<ol>
-			<li>
-  		  <tr>
-  	     	<td>
-  		      <table>
-  	         	<tr>
-  	         	 <th>
-                <img width='120' height='50' src="php/uploads/<?php echo $imagem; ?>">
-  		        </th>
-  		      </tr>
-  		  </tr>
-  		<tr >
-  		<th><h1><?php echo $registros["nome"]; ?></h1></th>
-  		</tr>
-  		<tr>
-  		<th><h2>R$ <?php echo $registros["preco"]; ?></h2></th>
-  		</tr>
-  		<tr>
-  		<th><?php echo'<a href="produto.php?foto='.$registros['foto'].'&preco='.$registros['preco'].'&cor='.$registros['cor'].'&quantidade='.$quantidade.'&fabricante='.$registros['fabricante'].'&descricao='.$registros['mensagem'].'&id='.$registros['id'].'&nome='.$registros['nome'].'" class="botao">Comprar</a>';?></th>
-  		</tr>
-  		</table>
-  		</td>
-  	</li>
-  	<?php 
-  	$cont_linha++;
-  	}
-  	elseif (($cont_linha==2) or ($cont_linha==3))
-  	{
-  	?>
-  	<li>
-  		<td>
-  		<table>
-  		<tr>
-  		<th>
-<img width='120' height='50' src="php/uploads/<?php echo $imagem; ?>">
-  		</th>
-  		</tr>
-  		</tr>
-  		<tr>
-  		<th><h1><?php echo $registros["nome"]; ?></h1></th>
-  		</tr>
-  		<tr>
-  		<th><h2>R$ <?php echo $registros["preco"]; ?></h2></th>
-  		</tr>
-  		<tr>
-  		<th><?php echo'<a href="produto.php?foto='.$registros['foto'].'&preco='.$registros['preco'].'&cor='.$registros['cor'].'&quantidade='.$quantidade.'&fabricante='.$registros['fabricante'].'&descricao='.$registros['mensagem'].'&id='.$registros['id'].'&nome='.$registros['nome'].'" class="botao">Comprar</a>';?></th>
-  		</tr>
-  		</table>
-  		</td>
-	</li>
-		
-	<?php
-	$cont_linha++;
+ 		include('php/conexion.php');
+ 		$res = "SELECT * FROM produtos";	
+		$query = $con->query($res);
+		echo"<ol>";
+		while ($row=$query->fetch_array()) {
+	  echo "
+          <li>
+          	<a value='2' >
+              <figure>
+                <img src='img/Mini Mulher Aranha Pimenta Sexy.jpg'>
+                <figcaption>$row[id] $row[nome]</figcaption>
+              </figure>
+            </a>
+          </li>";
 	}
-	else
-	{
-	?>
-	<li>
-		<td>
-		<table>
-		<tr>
-		<th>
-<img width='120' src="php/uploads/<?php echo $imagem; ?>">
-		</th>
-		</tr>
-		</tr>
-		<tr>
-		<th><h2><?php echo $registros["nome"]; ?></h2></th>
-		</tr>
-		<tr>
-		<th><h2>R$ <?php echo $registros["preco"]; ?></h2></th>
-		</tr>
-		<tr>
-		<th><?php echo'<a href="produto.php?foto='.$registros['foto'].'&preco='.$registros['preco'].'&cor='.$registros['cor'].'&quantidade='.$quantidade.'&fabricante='.$registros['fabricante'].'&descricao='.$registros['mensagem'].'&id='.$registros['id'].'&nome='.$registros['nome'].'" class="botao">Comprar</a>';?></th>
-		</tr>
-		</table>
-		</td>
-		</tr>
-	</li>
-	</ol>
-	<?php
-	$cont_linha=1;
-	}
-	}	
-	
-	?>
-
+	echo "</ol>"
+?>
 
 
 </section>
@@ -235,7 +152,7 @@ if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
       <div class="linha">
         <footer>
           <div class="colunha col12">
-            <span>&copy; 2018 - Ladies web</span>
+            <span>&copy; 2018 - Pura sedução web</span>
           </div>
         </footer>
         

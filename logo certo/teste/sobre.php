@@ -1,38 +1,6 @@
- <?php /*
-	include('php/conexion.php');
- 
-	$res = "SELECT * FROM produtos";
- 
- 
-?>
-<h1>List of companies ..</h1>
-<?php
-		$query = $con->query($res);
-		while ($row=$query->fetch_array()) {
-	  echo "$row[id] $row[nome] <br />";
-	  echo " <a href='produto.html'>
-              <figure>
-                <img src='img/Mini Mulher Aranha Pimenta Sexy.jpg'>
-                <figcaption>$row[id] $row[nome]</figcaption>
-              </figure>
-            </a>
-          </li>
-          <li>";
-	}*/
-?>
-
-
-
 <?php
 session_start();
-if(isset($_SESSION['user_id']) and $_SESSION['user_id'] == 2){
-  header("refresh:0;index do admiro corno.php");
 
-}
-if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
-  header("refresh:0;funcionario.php");
-
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -59,13 +27,13 @@ if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
   							<li><a href="clientes.php">clientes</a></li>
   							<li><a href="servicos.php">serviços</a></li>
   							<li><a href="sobre.php">sobre</a></li>
-                <li><a href="contato.php">contato</a></li>
+  							<li><a href="contato.php">contato</a></li>
                 <br></br>
                 <li><a href="login.php">login</a></li>
                 <?php if( isset($_SESSION['user_id'])){ ?>
                 <li><a href="deslogar.php">deslogar</a></li>
                 <?php } ?>
-  							<li><a href="cadastro.php">cadastro</a></li>
+                <li><a href="cadastro.php">cadastro</a></li>                
   						</ul>
   					</nav>
   				</div>
@@ -74,125 +42,38 @@ if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
   	</div>  
   	<div class="linha">
   		<section>
-  			<div class="coluna col3 sidebar">
-  				<h3>sites parceiros</h3>
-  				<ul class="sem-marcador sem-padding">
-  					<li><a href="https://www.google.com.br/">google</a></li>
-  					<li><a href="https://www.youtube.com/watch?v=zYrJZGBlDQ8&t=39s">Click bait</a></li>
-  					<li><a href="https://www.rb.com/br/marcas/olla/">Olla</a></li>
-  					<li><a href="">ítalo's</a></li>
-  					<li><a href="https://www.youtube.com/channel/UC4ITvC3VRojCY7zHs6iu1qQ">Ramon Kawai</a></li>
-  				</ul>
-  				<a href="clientes.php" class="botao"> ver todos &raquo;</a>
+  			<div class="coluna col8">
+          <h2>Sobre nós:</h2>
+          <p>Temos idade entre 17 e 18 anos, foi um grande trabalho para conseguimos conculuir o tcc, mas cada momento valeu a pena.</p>
+          <h4> curiosidades: </h4>
+          <p>75 % do grupo sabe resolver cubo mágico.</p>
+          <p>possuimos um canal no youtube com 36 mil inscrito, nome do canal "cilck bait".</p>
+          <p>Em nosso trabalho  da feira de ciências ligamos um computador de baixo da água.</p>
+          <h2>porque programação?</h2>
+          <p> pq dá dinheiro, um programa tu faz uns 100 reais facil </p>
+          <p>sensação boa, devido a liberação de hormonios, incluindo o famoso gerado "ENDORFIMA" que gera a famosa satisfação e o vicio ao ato de programar</p>
+          <p>u l t i m o   -  p a r a g r a f o . </p>
+
   			</div>
-  			<div class="container paineis">
-<section class="painel novidades">
-  <h2>PRODUTOS</h2>
- <?php
- 	include('php/conexion.php');
- 	$res = "SELECT * FROM produtos";	
-	$query = $con->query($res);
-	$cont_linha=1;
-	while ($registros=$query->fetch_array()) {
-		$registros["id"];
-		$id_produto=$registros["id"];
-		$nome=$registros['nome'];	
-    $imagem = $registros['foto'];
-    $quantidade= $registros['quantidade'];
-	if ($cont_linha==1)
-	{
-	?>
-		<ol>
-			<li>
-  		  <tr>
-  	     	<td>
-  		      <table>
-  	         	<tr>
-  	         	 <th>
-                <img width='120' height='50' src="php/uploads/<?php echo $imagem; ?>">
-  		        </th>
-  		      </tr>
-  		  </tr>
-  		<tr >
-  		<th><h1><?php echo $registros["nome"]; ?></h1></th>
-  		</tr>
-  		<tr>
-  		<th><h2>R$ <?php echo $registros["preco"]; ?></h2></th>
-  		</tr>
-  		<tr>
-  		<th><?php echo'<a href="produto.php?foto='.$registros['foto'].'&preco='.$registros['preco'].'&cor='.$registros['cor'].'&quantidade='.$quantidade.'&fabricante='.$registros['fabricante'].'&descricao='.$registros['mensagem'].'&id='.$registros['id'].'&nome='.$registros['nome'].'" class="botao">Comprar</a>';?></th>
-  		</tr>
-  		</table>
-  		</td>
-  	</li>
-  	<?php 
-  	$cont_linha++;
-  	}
-  	elseif (($cont_linha==2) or ($cont_linha==3))
-  	{
-  	?>
-  	<li>
-  		<td>
-  		<table>
-  		<tr>
-  		<th>
-<img width='120' height='50' src="php/uploads/<?php echo $imagem; ?>">
-  		</th>
-  		</tr>
-  		</tr>
-  		<tr>
-  		<th><h1><?php echo $registros["nome"]; ?></h1></th>
-  		</tr>
-  		<tr>
-  		<th><h2>R$ <?php echo $registros["preco"]; ?></h2></th>
-  		</tr>
-  		<tr>
-  		<th><?php echo'<a href="produto.php?foto='.$registros['foto'].'&preco='.$registros['preco'].'&cor='.$registros['cor'].'&quantidade='.$quantidade.'&fabricante='.$registros['fabricante'].'&descricao='.$registros['mensagem'].'&id='.$registros['id'].'&nome='.$registros['nome'].'" class="botao">Comprar</a>';?></th>
-  		</tr>
-  		</table>
-  		</td>
-	</li>
-		
-	<?php
-	$cont_linha++;
-	}
-	else
-	{
-	?>
-	<li>
-		<td>
-		<table>
-		<tr>
-		<th>
-<img width='120' src="php/uploads/<?php echo $imagem; ?>">
-		</th>
-		</tr>
-		</tr>
-		<tr>
-		<th><h2><?php echo $registros["nome"]; ?></h2></th>
-		</tr>
-		<tr>
-		<th><h2>R$ <?php echo $registros["preco"]; ?></h2></th>
-		</tr>
-		<tr>
-		<th><?php echo'<a href="produto.php?foto='.$registros['foto'].'&preco='.$registros['preco'].'&cor='.$registros['cor'].'&quantidade='.$quantidade.'&fabricante='.$registros['fabricante'].'&descricao='.$registros['mensagem'].'&id='.$registros['id'].'&nome='.$registros['nome'].'" class="botao">Comprar</a>';?></th>
-		</tr>
-		</table>
-		</td>
-		</tr>
-	</li>
-	</ol>
-	<?php
-	$cont_linha=1;
-	}
-	}	
-	
-	?>
-
-
-
-</section>
-</div>
+                <div class="coluna col4 sidebar">
+          <img src="img/formatura.jpg" al
+          t="" />
+          <h3>Integrantes do grupo:</h3>
+          <ul>
+            <li>Ítalo Alves de Jesus</li>
+            <li>Caynan da Silva</li>
+            <li>Matheus Felipe</li>
+            <li>Igor Moura</li>
+          </ul>
+          <h3>NOSSAS AREAS DE CONHECIMENTO:</h3>
+          <ul>
+            <li>HTML & CSS</li>
+            <li>javascript e jquery</li>
+            <li>PHP</li>
+            <li>wordpress</li>
+            <li>Pacote office</li>
+          </ul>
+        </div>
   		</section>
   	</div>
 <div class="conteudo-extra">
@@ -235,7 +116,7 @@ if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
       <div class="linha">
         <footer>
           <div class="colunha col12">
-            <span>&copy; 2018 - Ladies web</span>
+            <span>&copy; 2018 - Pura sedução web</span>
           </div>
         </footer>
         

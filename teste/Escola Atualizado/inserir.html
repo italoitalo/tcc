@@ -1,0 +1,83 @@
+<html>
+<head>
+      <title>Cadastro de alunos</title>
+</head>	  
+<body bgcolor="#D3D3D3">
+<center>
+<h1> Cadastro </h1>
+<table border="0">
+<form method= 'post' action= 'inserir.php' enctype="multipart/form-data">
+<tr>
+    <td>  
+        <b>Nome:</b>
+    </td>
+    <td>
+        <input type= 'text' name='nome'>
+    </td>
+</tr>
+<tr>
+    <td>
+        <b>Curso:</b>
+    </td>
+    <td>
+        <select name='curso' style="width: 172px;">
+        <option value='null' disabled selected>Curso</option>
+        <option value='informática'>Informática</option>
+        <option value='administração'>Administração</option>
+        <option value='enfermagem'>Enfermagem</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td>
+        <b>Turma:</b>
+    </td>
+    <td>
+        <input type= 'text' name= 'turma'>
+    </td>
+</tr>
+<tr>
+    <td><b>CPF:</b></td>
+    <td>
+        <input type= 'text' name= 'cpf'>
+    </td>
+</tr>
+<tr>
+    <td><b>Identidade:</b></td>
+    <td>
+        <input type= 'text' name= 'identidade'>
+    </td>
+</tr>
+<tr>
+    <td><b>Celular:</b></td>
+    <td>
+        <input type= 'text' name= 'celular'>
+    </td>
+</tr>
+<tr>
+    <td><b>Telefone:</b></td>
+    <td>
+        <input type= 'text' name= 'telefone'>
+    </td>
+</tr>
+<tr>
+    <td><b>Email:</b></td>
+    <td>
+        <input type= 'text' name= 'email'>
+    </td>
+</tr>
+<tr>
+    <td colspan="2">
+        <input type= 'file' name="arquivo">
+    </td>
+</tr>
+<tr>
+    <td colspan="2">
+        <input type= 'submit' name="cadastrar" value= 'Enviar'> <a href="visualizar.php"><input type="button" value="Voltar"></a>
+    </td>
+</tr>
+</form>
+</table>
+</center>
+</body>
+</html>

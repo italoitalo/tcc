@@ -1,0 +1,14 @@
+body{
+	font-family: 'Roboto', sans-serif;
+}
+/* grid de 690px */
+.linha{
+	width: 960;
+	margin: 0 auto;
+	overflow: auto;
+	padding: 5px 0;
+}
+.coluna{
+	padding: 0 10px;
+	float: left;
+}

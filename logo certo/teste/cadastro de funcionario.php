@@ -1,38 +1,9 @@
- <?php /*
-	include('php/conexion.php');
- 
-	$res = "SELECT * FROM produtos";
- 
- 
-?>
-<h1>List of companies ..</h1>
-<?php
-		$query = $con->query($res);
-		while ($row=$query->fetch_array()) {
-	  echo "$row[id] $row[nome] <br />";
-	  echo " <a href='produto.html'>
-              <figure>
-                <img src='img/Mini Mulher Aranha Pimenta Sexy.jpg'>
-                <figcaption>$row[id] $row[nome]</figcaption>
-              </figure>
-            </a>
-          </li>
-          <li>";
-	}*/
-?>
-
-
-
 <?php
 session_start();
-if(isset($_SESSION['user_id']) and $_SESSION['user_id'] == 2){
-  header("refresh:0;index do admiro corno.php");
-
-}
-if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
-  header("refresh:0;funcionario.php");
-
-}
+if(!isset ($_SESSION['user_id']) == true or $_SESSION['user_id'] != 2)
+{
+  header('location:login.php');
+  }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -42,6 +13,17 @@ if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
     <link rel="stylesheet" type="text/css" href="css/normalize.css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/estilo.css" />
+    <script type="text/javascript" src="js/jquery-1.2.6.pack.js"></script>
+    <script type="text/javascript" src="js/jquery.maskedinput-1.1.4.pack.js"/></script>
+    <script type="text/javascript">
+  $(document).ready(function(){
+    $("#cpf").mask("999.999.999-99");
+  });
+$(document).ready(function(){
+  $("#cep").mask("99.999-999");
+});
+</script>
+</script>
   </head>
   <body>
   	<div class="header">
@@ -83,114 +65,65 @@ if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
   					<li><a href="">ítalo's</a></li>
   					<li><a href="https://www.youtube.com/channel/UC4ITvC3VRojCY7zHs6iu1qQ">Ramon Kawai</a></li>
   				</ul>
-  				<a href="clientes.php" class="botao"> ver todos &raquo;</a>
+  				<a href="clientes.html" class="botao"> ver todos &raquo;</a>
   			</div>
   			<div class="container paineis">
-<section class="painel novidades">
-  <h2>PRODUTOS</h2>
- <?php
- 	include('php/conexion.php');
- 	$res = "SELECT * FROM produtos";	
-	$query = $con->query($res);
-	$cont_linha=1;
-	while ($registros=$query->fetch_array()) {
-		$registros["id"];
-		$id_produto=$registros["id"];
-		$nome=$registros['nome'];	
-    $imagem = $registros['foto'];
-    $quantidade= $registros['quantidade'];
-	if ($cont_linha==1)
-	{
-	?>
-		<ol>
-			<li>
-  		  <tr>
-  	     	<td>
-  		      <table>
-  	         	<tr>
-  	         	 <th>
-                <img width='120' height='50' src="php/uploads/<?php echo $imagem; ?>">
-  		        </th>
-  		      </tr>
-  		  </tr>
-  		<tr >
-  		<th><h1><?php echo $registros["nome"]; ?></h1></th>
-  		</tr>
-  		<tr>
-  		<th><h2>R$ <?php echo $registros["preco"]; ?></h2></th>
-  		</tr>
-  		<tr>
-  		<th><?php echo'<a href="produto.php?foto='.$registros['foto'].'&preco='.$registros['preco'].'&cor='.$registros['cor'].'&quantidade='.$quantidade.'&fabricante='.$registros['fabricante'].'&descricao='.$registros['mensagem'].'&id='.$registros['id'].'&nome='.$registros['nome'].'" class="botao">Comprar</a>';?></th>
-  		</tr>
-  		</table>
-  		</td>
-  	</li>
-  	<?php 
-  	$cont_linha++;
-  	}
-  	elseif (($cont_linha==2) or ($cont_linha==3))
-  	{
-  	?>
-  	<li>
-  		<td>
-  		<table>
-  		<tr>
-  		<th>
-<img width='120' height='50' src="php/uploads/<?php echo $imagem; ?>">
-  		</th>
-  		</tr>
-  		</tr>
-  		<tr>
-  		<th><h1><?php echo $registros["nome"]; ?></h1></th>
-  		</tr>
-  		<tr>
-  		<th><h2>R$ <?php echo $registros["preco"]; ?></h2></th>
-  		</tr>
-  		<tr>
-  		<th><?php echo'<a href="produto.php?foto='.$registros['foto'].'&preco='.$registros['preco'].'&cor='.$registros['cor'].'&quantidade='.$quantidade.'&fabricante='.$registros['fabricante'].'&descricao='.$registros['mensagem'].'&id='.$registros['id'].'&nome='.$registros['nome'].'" class="botao">Comprar</a>';?></th>
-  		</tr>
-  		</table>
-  		</td>
-	</li>
-		
-	<?php
-	$cont_linha++;
-	}
-	else
-	{
-	?>
-	<li>
-		<td>
-		<table>
-		<tr>
-		<th>
-<img width='120' src="php/uploads/<?php echo $imagem; ?>">
-		</th>
-		</tr>
-		</tr>
-		<tr>
-		<th><h2><?php echo $registros["nome"]; ?></h2></th>
-		</tr>
-		<tr>
-		<th><h2>R$ <?php echo $registros["preco"]; ?></h2></th>
-		</tr>
-		<tr>
-		<th><?php echo'<a href="produto.php?foto='.$registros['foto'].'&preco='.$registros['preco'].'&cor='.$registros['cor'].'&quantidade='.$quantidade.'&fabricante='.$registros['fabricante'].'&descricao='.$registros['mensagem'].'&id='.$registros['id'].'&nome='.$registros['nome'].'" class="botao">Comprar</a>';?></th>
-		</tr>
-		</table>
-		</td>
-		</tr>
-	</li>
-	</ol>
-	<?php
-	$cont_linha=1;
-	}
-	}	
-	
-	?>
+<section class="painel novidades" id="cadastro">
+<h1>Cadastro de funcionario</h1>
 
-
-
+    <hr>
+      <form method="post" action="php/registro funcionario.php">
+        <table>
+          <tr>
+            <td>Nome:</td>
+            <td><input type="text" name="username" id="username" required></td>
+          </tr>         
+           <tr>
+            <td>Nome completo:</td>
+            <td><input type="text" name="fullname" id="fullname" required></td>
+          </tr>
+          <tr>
+            <td>Rua:</td>
+            <td><input type="text" name="rua" id="rua" required></td>
+          </tr>
+          <tr>
+            <td>cep:</td>
+            <td><input type="text" name="cep" id="cep" required></td>
+          </tr>          
+          <tr>
+            <td>Número:</td>
+            <td><input type="number" name="numero" id="numero" required></td>
+          </tr>
+          <tr>
+          <tr>
+            <td>Telefone:</td>
+            <td><input type="tel" required maxlength="15" name="fone" id="fone" /></td>
+          </tr>
+          <tr>
+            <td>CPF:</td>
+            <td><input type="text" name="cpf" id="cpf" required></td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td><input type="email" required class="input-text" name="email" id="email" /> </td>
+          </tr>
+          <tr>
+            <td>senha:</td>
+            <td><input type="password" name="password" id="password" required></td>
+          </tr>
+          <tr>
+            <td>Confirme sua senha:</td>
+            <td><input type="password" name="confirm_password" id="confirm_password" required></td>
+          </tr>
+        </table>
+<tr>
+        <td colspan="2"><input type="submit" value="Cadastrar &raquo" id="btnCad" class="botao"> 
+        <a href="./">
+          <input type="button" value="Cancelar &raquo" id="btnCancelar" class="botao">
+        </a>
+      </td>
+      </tr> 
+      </form>
 </section>
 </div>
   		</section>
@@ -235,7 +168,7 @@ if(isset($_SESSION['funcionario']) and $_SESSION['funcionario'] == 1){
       <div class="linha">
         <footer>
           <div class="colunha col12">
-            <span>&copy; 2018 - Ladies web</span>
+            <span>&copy; 2018 - Pura sedução web</span>
           </div>
         </footer>
         
